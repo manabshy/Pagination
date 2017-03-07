@@ -1,0 +1,32 @@
+{
+    "type": "cf_case_folder",
+    "fieldDefinitions": [
+        {
+			"name":"caseCreator",
+			"label":"Case Creator",
+			"mandatory":false,
+			"updateable":false,
+			"type": "Text",
+			"format": null,
+			"defaultValue":null
+		},
+		{
+			"name":"caseTeam",
+			"label":"CaseTeam",
+			"mandatory":false,
+			"updateable":false,
+			"type": "Text",
+			"format": null,
+			"defaultValue":null
+		},
+		{
+			"name":"caseStatus",
+			"label":"Case Status",
+			"mandatory": true,
+			"updateable": true,
+			"type": "RadioGroup",
+			"format": "Open|Closed",
+			"defaultValue": null
+		}
+    ]
+}

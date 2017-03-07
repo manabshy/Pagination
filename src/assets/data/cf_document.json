@@ -1,0 +1,50 @@
+{
+    "type": "cf_document",
+    "fieldDefinitions": [
+        {
+			"name":"version",
+			"label":"Version",
+			"mandatory":false,
+			"updateable":false,
+			"type": "select",
+			"format": "[0-9].[0-9]",
+			"defaultValue":null
+		},
+		{
+			"name":"fileName",
+			"label":"Filename",
+			"mandatory":false,
+			"updateable":true,
+			"type": "Text",
+			"format": null,
+			"defaultValue":null
+		},
+		{
+			"name":"uploadDate",
+			"label":"Upload Date",
+			"mandatory":false,
+			"updateable":false,
+			"type": "DateTime",
+			"format": null,
+			"defaultValue":null
+		},
+		{
+			"name":"utr",
+			"label":"UTR",
+			"mandatory":true,
+			"updateable":true,
+			"type": "Text",
+			"format": "[0-9]{10}",
+			"defaultValue":null
+		},
+		{
+			"name":"important",
+			"label":"Important",
+			"mandatory":true,
+			"updateable":false,
+			"type": "Checkbox",
+			"format": null,
+			"defaultValue":null
+		}
+    ]
+}

@@ -1,0 +1,32 @@
+
+<h2>{{title}}</h2>
+
+<form [formGroup]="form" *ngIf="form"  (ngSubmit)="onSubmit()" >
+    <app-notification *ngIf="caseId" [message]="info"></app-notification>
+    
+    <div *ngFor="let field of fields">
+        <app-field-generator [formId]="formId" [field]="field" [form]="form"></app-field-generator>
+    </div>
+    <div class="form-group clearfix">
+        <a  [routerLink]="['upload']"
+                *ngIf="casePostResponse" 
+                class="btn btn-primary float-sm-left col-xs-12 col-sm-2">Upload document</a>
+        <button type="submit" [disabled]="!form.valid" class="btn btn-primary float-sm-right col-xs-12 col-sm-2">Save</button>
+    </div>
+</form>
+
+<div *ngIf="casePostResponse" class="card">
+    <app-notification [message]="status"></app-notification>
+    <div class="card-header">
+        <strong>Saved the following values</strong>
+    </div>
+    <div class="card-block over">
+        <code>
+            {{formData}}
+        </code>
+    </div>
+</div> 
+
+
+  
+

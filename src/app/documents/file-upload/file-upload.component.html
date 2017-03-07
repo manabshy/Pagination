@@ -1,0 +1,39 @@
+<div class="container">
+  <div class="col-xs-11">
+
+    <h1>File upload</h1>
+
+    <app-notification [message]="status"></app-notification>
+
+    <form [formGroup]="form" (ngSubmit)="onSubmit($event)">
+
+      <div class="form-group">
+        <label for="">File:</label><br>
+        <input class="form-control" type="file" formControlName="file" (change)="onFileChange($event)">
+      </div>
+
+      <div class="form-group">
+        <label for="">File Type:</label><br>
+        <input class="form-control" type="text" formControlName="fileType" readonly>
+      </div>
+
+      <div class="form-group">
+        <label for="">Document Type:</label><br>
+        <select class="form-control" formControlName="documentType" (change)="onDocTypeChange($event)">
+      <option value="">-- Please Select --</option>
+      <option *ngFor="let type of docTypes" [value]="type">{{ type }}</option>
+    </select>
+      </div>
+
+      <div [hidden]="!form.controls.documentType.valid">
+        <h2>Meta Data</h2>
+        <app-fields [fieldData]="metaDataFieldsList" [formGroup]="metaDataFormGroup"></app-fields>
+      </div>
+
+      <div class="form-group">
+        <button class="btn btn-primary col-xs-12 col-sm-2" type="submit" [disabled]="!form.valid">Submit</button>
+      </div>
+
+    </form>
+  </div>
+</div>

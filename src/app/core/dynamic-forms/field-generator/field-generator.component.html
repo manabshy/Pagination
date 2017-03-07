@@ -1,0 +1,45 @@
+
+<div class="form-group" [formGroup]="form" [ngClass]="{'has-error':!form.controls[field.name].valid}" >
+
+  <label [attr.for]="field.name">{{field.label}}</label>
+  
+  <div *ngIf="field.type" [ngSwitch]="field.controlType">
+    
+    <input *ngSwitchCase="'textbox'" 
+          [formControlName]="field.name" 
+          class="form-control" 
+          [id]="field.name" [type]="field.type" [placeholder]="field.label">
+          
+    <app-dropdown [field]="field" *ngSwitchCase="'dropdown'" [form]="form" ></app-dropdown>
+
+    <div class="form-check" *ngSwitchCase="'checkbox'">
+      <label class="form-check-label">
+        <input class="form-check-input" 
+        [id]="field.name" [type]="field.type" 
+        [(ngModel)]="field.value" 
+        [formControlName]="field.name" (change)="field.value = ck.checked" #ck>
+        {{field.label}}
+      </label>
+    </div>
+    <div class="form-check" *ngSwitchCase="'radio'">
+       <label *ngFor="let opt of field.options" class="form-check-label">
+        <input
+              class="form-check-input"
+              [formControlName]="field.name"
+              [type]="field.type"
+              [name]="field.name"
+              [value]="opt.key"
+              [(ngModel)]="field.value" 
+              (change)="field.value = opt.value">
+               {{opt.value}}
+        </label>
+    </div>
+
+  </div> 
+  <div [hidden]="isValid || isPristine" class="alert alert-danger">    
+          {{field.label}} is required
+  </div>
+</div>
+
+
+

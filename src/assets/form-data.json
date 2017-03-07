@@ -1,0 +1,52 @@
+[
+      {
+        "key": "CaseId",
+        "label": "Case",
+        "limit": 5,
+        "required": true,
+        "order": 1,
+        "controlType": "text"
+      },
+      {
+        "key": "responseCode",
+        "label": "Response",
+        "order": 2,
+        "controlType": "text"
+      },
+      {
+        "key": "email",
+        "label": "Email",
+        "order": 3,
+        "controlType": "text",
+        "value": "test@email.com"
+      },
+      { 
+        "key": "city",
+        "label": "City",
+        "options":[
+          {"key": "London","value": "London"},
+          {"key": "Woking","value": "Woking"},
+          {"key": "Woking","value": "Telford"}
+
+          ],
+        "order": 4,
+        "controlType": "dropdown"
+      },
+      {
+        "key": "active",
+        "label": "Is Active",
+        "order": 5,
+        "controlType": "checkbox"
+      },
+      {
+        "key": "gender",
+        "controlType": "radio",
+        "label": "Gender",
+        "order": 6,
+        "options": [
+            {"key": "male", "value": "Male"},
+            {"key": "female", "value": "Female"}
+        ]
+      }      
+
+]

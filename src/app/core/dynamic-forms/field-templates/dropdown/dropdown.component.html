@@ -1,0 +1,10 @@
+<div [formGroup]="form">
+    <select [id]="field.key" 
+            [formControlName]="field.key"
+            class="form-control"
+            [(ngModel)]="selectedItem"
+            (change)="onChange($event)">
+        <option value="" disabled1 selected1 hidden1 value="0" [selected]="selectedItem == null" >---Select values---</option>
+        <option *ngFor="let opt of fieldList" [value]="opt.key" >{{opt.value}}</option>
+    </select>
+  </div>
