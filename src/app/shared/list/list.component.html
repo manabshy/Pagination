@@ -1,3 +1,5 @@
+
+<p>Results: {{ total$ }}</p>
 <div class="container-fluid">
   <app-notification [message]="errorMessage"></app-notification>
   <table *ngIf="hasData" class="row table table-responsive table-hover table-striped table-bordered">
@@ -23,3 +25,4 @@
     </tbody>
   </table>
 </div>
+<app-pagination [total]="total$" [page]="page" (goTo)="goToPage($event)"></app-pagination>

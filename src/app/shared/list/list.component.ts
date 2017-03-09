@@ -1,5 +1,6 @@
-import { Component, Input, OnInit, OnChanges, Output, EventEmitter } from '@angular/core';
+import { Component, Input, OnInit, OnChanges, Output, EventEmitter,AfterViewInit, ChangeDetectorRef } from '@angular/core';
 import { AppMessage, MessageType } from '../notification/notification.model';
+import { Subject, Observable } from "rxjs";
 
 @Component({
   selector: 'app-list',
@@ -11,6 +12,7 @@ export class ListComponent implements OnChanges {
   @Input() showView: boolean;
   @Input() dataset: Array<any>
   @Output() OnViewClick: EventEmitter<any> = new EventEmitter<any>();
+  total$: number;
 
   errorMessage: AppMessage;
   hasData: boolean = false;
@@ -28,11 +30,12 @@ export class ListComponent implements OnChanges {
   private formatColumnHeader(heading: string): string {
     return heading;
   }
-
   ngOnChanges() {
     this.errorMessage = null;
     this.hasData = (this.dataset !== undefined) ? true : false;
     if (this.hasData && this.dataset.length > 0) {
+      console.log(this.dataset.length);
+      this.total$ = this.dataset.length;
       this.initializeColumns(this.dataset[0]);
     } else {
       this.hasData = false;

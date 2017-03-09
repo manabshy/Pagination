@@ -6,6 +6,7 @@ import { HeaderComponent} from './header/header.component';
 import { FooterComponent} from './footer/footer.component';
 import { RowComponent} from './row/row.component';
 import { ListComponent } from '../list/list.component';
+import { PaginationComponent } from '../pagination/pagination.component';
 import { SharedModule } from '../../shared/shared.module';
 
 @NgModule({
@@ -17,7 +18,8 @@ import { SharedModule } from '../../shared/shared.module';
     HeaderComponent,
     FooterComponent,
     RowComponent,
-    ListComponent
+    ListComponent,
+    PaginationComponent
     ],
   exports : [ListComponent],
   schemas: [NO_ERRORS_SCHEMA]
