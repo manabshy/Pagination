@@ -1,4 +1,4 @@
-import { Component, OnInit,AfterViewInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit,OnChanges,AfterViewInit, ChangeDetectorRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Observable, Subject} from "rxjs";
@@ -23,20 +23,9 @@ export class ResultsComponent implements OnInit {
   resultsCols: Array<any> = [];
 
 
-   terms: string = "";
-   private searchTermStream = new Subject<string>();
+  // paged items
+  pagedItems: any[] = [];
 
-   page: number = 1;
-   limit: number = 10;
-   private pageStream = new Subject<number>();
-    // array of all items to be paged
-    private allItems: any[];
-
-    // pager object
-    pager: any = {};
-
-    // paged items
-    pagedItems: any[];
 
 
   constructor(private searchService: SearchService,
@@ -59,7 +48,6 @@ export class ResultsComponent implements OnInit {
       this.resultService.updateData(this.form.value);
     }
 
-  
     this.searchService.searchDocuments(this.resultService.json())    
       .subscribe((response) => {
         this.searchResult = response;
@@ -75,27 +63,17 @@ export class ResultsComponent implements OnInit {
           }
 
         }
-        this.setPage(1);
-
       });
 
   }
-
-    setPage(page: number) {
-        if (page < 1 || page > this.pager.totalPages) {
-            return;
-        }
-
-        // get pager object from service
-       console.log(this.searchResult.length);
-       this.pager = this.pagerService.getPager(this.searchResult.length, page);
-       console.log(this.pager);
-        // get current page of items
-        this.pagedItems = this.searchResult.slice(this.pager.startIndex, this.pager.endIndex + 1);
-        console.log(this.pagedItems);
-  }
-
-
+ setPage(event): void {
+    
+    //console.log("Emitted in Result com:",event);
+    //console.log("pagedItems:" ,this.pagedItems);
+    this.pagedItems = event;
+    //console.log(this.pagedItems);
+  }  
+  
   private updateMetaDataFields(fieldList) {
     let group: any = {};
 

@@ -30,6 +30,7 @@ export class ListComponent implements OnChanges {
   }
 
   ngOnChanges() {
+
     this.errorMessage = null;
     this.hasData = (this.dataset !== undefined) ? true : false;
     if (this.hasData && this.dataset.length > 0) {

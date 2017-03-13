@@ -1,45 +1,54 @@
-import {Component, OnInit, EventEmitter, Output, Input} from '@angular/core';
+import { Component, OnInit,OnChanges, EventEmitter, Output, Input } from '@angular/core';
+import * as _ from 'underscore';
+import { PagerService } from '../../search/index'
 
 @Component({
   selector: 'app-pagination',
   templateUrl: './pagination.component.html',
   styleUrls: ['./pagination.component.scss']
 })
-export class PaginationComponent {
+export class PaginationComponent implements OnChanges {
 
-  @Input()
-  total: number = 0;
+  constructor(private pagerService: PagerService) { }
 
-  @Input()
+  @Input() dataset: Array<any>
+  @Output() setPageClick: EventEmitter<any> = new EventEmitter<any>();
+
   page: number = 1;
+  limit: number = 10;
+  hasData: boolean = false;
+  private allItems: any[];
 
-  @Output()
-  goTo: EventEmitter<number> = new EventEmitter<number>();
 
-  constructor() { }
+  // pager object
+  pager: any = {};
 
-  totalPages() {
-    return Math.ceil(this.total / 10);
+  // paged items
+  pagedItems: any[];
+
+  ngOnChanges() {
+    this.setPage(1);
   }
+  setPage(page: number) {
+    console.log("this.pager.totalPages" + this.pager.totalPages);
+    if (page < 1 || page > this.pager.totalPages) {
+      return;
+    }
 
-  pagesRange() {
-    return this.range(1, this.totalPages() + 1);
-  }
+    // get pager object from service
+     this.hasData = (this.dataset !== undefined) ? true : false;
+    console.log('pagination com:' + this.hasData); 
+    if (this.hasData && this.dataset.length > 0) {
 
-  prevPage() {
-    return Math.max(1, this.page - 1);
-  }
+      console.log("pagination component:" + this.dataset.length);
 
-  nextPage() {
-    return Math.min(this.totalPages(), this.page + 1);
-  }
+      this.pager = this.pagerService.getPager(this.dataset.length, page);
 
-  pageClicked(page: number) {
-    this.goTo.next(page);
-  }
-
-  range(start, stop, step=1){
-    if (!stop) { start=0;stop=start; }
-    return Array.from(new Array(Number((stop-start)/step)), (x,i) => start+ i*step)
+      console.log(this.pager);
+      // get current page of items
+      this.pagedItems = this.dataset.slice(this.pager.startIndex, this.pager.endIndex + 1);
+      console.log("in Pagination Com: Before Emit:",  this.pagedItems);
+          this.setPageClick.emit(this.pagedItems);
+    }
   }
 }
