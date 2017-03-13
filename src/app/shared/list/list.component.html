@@ -1,11 +1,9 @@
-
-<p>Results: {{ total$ }}</p>
 <div class="container-fluid">
   <app-notification [message]="errorMessage"></app-notification>
   <table *ngIf="hasData" class="row table table-responsive table-hover table-striped table-bordered">
     <thead class="thead-default">
       <tr>
-        <th>ID</th>
+        <!--<th>ID</th>-->
         <th *ngIf='showView'>&nbsp;</th>
         <th *ngFor="let c of cols">
           <app-header [headerData]="c"></app-header>
@@ -14,7 +12,7 @@
     </thead>
     <tbody>
       <tr *ngFor="let r of dataset; let i = index">
-        <td>{{i + 1}}</td>
+        <!--<td>{{i + 1}}</td>-->
         <td *ngIf='showView'>
           <button (click)='OnView(i)' class='btn btn-primary'>View</button>
         </td>
@@ -25,4 +23,3 @@
     </tbody>
   </table>
 </div>
-<app-pagination [total]="total$" [page]="page" (goTo)="goToPage($event)"></app-pagination>

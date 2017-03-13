@@ -29,7 +29,8 @@
     "core-js": "^2.4.1",
     "rxjs": "^5.1.0",
     "ts-helpers": "^1.1.1",
-    "zone.js": "^0.7.2"
+    "zone.js": "^0.7.2",
+    "underscore": "^1.8.3"
   },
   "devDependencies": {
     "@angular/compiler-cli": "^2.3.1",
@@ -54,6 +55,7 @@
     "tslint": "^4.0.2",
     "typedoc": "^0.5.5",
     "typescript": "^2.0.10",
+    "@types/underscore": "^1.7.33",
     "typings": "^2.1.0"
   }
 }

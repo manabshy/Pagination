@@ -12,7 +12,27 @@
     </form>
     <br>
     <h4 class="row-title"> Search Results </h4>
-    <app-list [dataset]='searchResult' [showView]='false'></app-list>
+    <p *ngIf="searchResult">Results Found: {{searchResult.length}} </p>
+    <app-list [dataset]='pagedItems' [showView]='false'></app-list>
+    <app-pagination [total]="total$" [page]="page" (goTo)="goToPage($event)"></app-pagination>
+        <!-- pager -->
+            <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
+                <li [ngClass]="{disabled:pager.currentPage === 1}">
+                    <a (click)="setPage(1)">First</a>
+                </li>
+                <li [ngClass]="{disabled:pager.currentPage === 1}">
+                    <a (click)="setPage(pager.currentPage - 1)">Previous</a>
+                </li>
+                <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+                    <a (click)="setPage(page)">{{page}}</a>
+                </li>
+                <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                    <a (click)="setPage(pager.currentPage + 1)">Next</a>
+                </li>
+                <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                    <a (click)="setPage(pager.totalPages)">Last</a>
+                </li>
+            </ul>
 
   </div>
 </div>

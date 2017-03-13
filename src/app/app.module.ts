@@ -17,6 +17,7 @@ import { SearchModule } from './search/search.module';
 import { HttpClientService } from './shared/http-client.service';
 import { NavigationModule } from './shared/navigation/navigation.module';
 
+import { PagerService } from './search/index';
 
 const IS_DEV = true; 
 
@@ -44,6 +45,7 @@ export function loadConfig(config: AppConfig) {
   ],
   providers: [
     AppConfig,
+    PagerService,
     HttpClientService,
     {
       provide: APP_INITIALIZER,
