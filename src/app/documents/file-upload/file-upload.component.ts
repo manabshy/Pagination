@@ -5,7 +5,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AppMessage, MessageType } from '../../shared/notification/notification.model';
 import { DocumentService } from '../shared/document.service';
 import { FieldsModel } from '../../shared/fields/fields.model';
-
+import { MetaDataModel,FileDocument } from '../shared/metadata.model'
 @Component({
   selector: 'app-file-upload',
   templateUrl: './file-upload.component.html'
@@ -18,6 +18,8 @@ export class FileUploadComponent implements OnInit {
   metaDataFormGroup: FormGroup;
   status: AppMessage;
   private docTypes: String[]
+  files: Array<FileDocument>;
+  FileSelected: boolean = false;
 
   constructor(private documentService: DocumentService, private activatedRoute: ActivatedRoute) { }
 
@@ -39,6 +41,29 @@ export class FileUploadComponent implements OnInit {
 
   onFileChange(event) {
     this.form.controls['fileType'].setValue(event.target.files[0].type);
+    this.files = new Array<FileDocument>();
+    let file = event.target.files;
+    let selectedFiles: Array<File> = <Array<File>>file;
+    for(let f of selectedFiles){
+      this.files.push(this.getFileDocument(f));
+    }
+    this.FileSelected = true;
+
+    console.log('files:', this.files);
+
+  }
+
+  getFileDocument(f: File): FileDocument {
+    let fDoc: FileDocument = new FileDocument();
+    fDoc.file = f;
+    fDoc.customer = "Customer1";
+    fDoc.type = f.type;
+    fDoc.name =f.name;
+    fDoc.size =f.size.toString();
+    fDoc.receivedDate = f.lastModifiedDate;
+    fDoc.creationDate = f.lastModifiedDate;
+    fDoc.uploadDate = new Date(Date.now());
+    return fDoc;
   }
 
   onDocTypeChange(event) {

@@ -9,7 +9,8 @@
 
       <div class="form-group">
         <label for="">File:</label><br>
-        <input class="form-control" type="file" formControlName="file" (change)="onFileChange($event)">
+        <!--<input class="form-control" type="file" formControlName="file" (change)="onFileChange($event)">-->
+        <input type="file" name="files[]" id="file" class="form-control" data-multiple-caption="{count} files selected" multiple="" (change)="onFileChange($event)" >
       </div>
 
       <div class="form-group">
@@ -35,5 +36,7 @@
       </div>
 
     </form>
+    <span>Files:{{files}}</span>
+    
   </div>
 </div>
