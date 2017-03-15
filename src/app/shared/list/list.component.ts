@@ -66,5 +66,10 @@ export class ListComponent implements OnChanges {
   OnView(rowIndex: number): any {
     this.OnViewClick.emit(this.dataset[rowIndex]);
   }
+  delete(i){
+      console.log(i);
+      var index = this.dataset.indexOf(i);
+      this.dataset.splice(index, 1);
+  }
 
 }
