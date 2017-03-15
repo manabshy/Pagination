@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { SharedModule } from '../shared/shared.module';
+import { ListModule } from '../shared/list/list.module'
 import { FileUploadComponent } from './file-upload/file-upload.component';
 import { DocumentService } from './shared/document.service';
 import { AppConfig } from '../common/config/app.config';
@@ -21,6 +22,7 @@ import { HttpHeaders } from '../common/config/http.headers';
     BrowserModule,
     FormsModule,
     SharedModule,
+    ListModule,
     ReactiveFormsModule
   ],
   providers: [
