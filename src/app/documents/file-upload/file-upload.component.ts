@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component,OnInit,QueryList,ElementRef } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
@@ -20,14 +20,46 @@ export class FileUploadComponent implements OnInit {
   private docTypes: String[]
   files: Array<FileDocument>;
   isFileSelect: boolean = false;
+  constructor(private documentService: DocumentService, 
+              private activatedRoute: ActivatedRoute,
+              private elementRef: ElementRef) { }
 
-  constructor(private documentService: DocumentService, private activatedRoute: ActivatedRoute) { }
 
+/******* */
+ 
+    activeColor: string = 'green';
+    baseColor: string = '#ccc';
+    overlayColor: string = 'rgba(255,255,255,0.5)';
+    
+    dragging: boolean = false;
+    loaded: boolean = false;
+    imageLoaded: boolean = false;
+    imageSrc: string = '';
+    
+    handleDragEnter() {
+        this.dragging = true;
+        console.log('handleDragEnter:' + this.dragging);
+    }
+    
+    handleDragLeave() {
+        this.dragging = false;
+         console.log('handleDragLeave:' + this.dragging);
+    }
+    
+    handleDrop(e) {
+        e.preventDefault();
+        this.dragging = false;
+        console.log('handleDrop:calling onFileChange');
+        this.onFileChange(e);
+    }
+    
+ /****** */
   ngOnInit() {
+        
+
     this.activatedRoute.params.subscribe((params: Params) => {
       this.caseId = params['id'];
     });
-
     this.form = new FormGroup({
       file: new FormControl(''),
       fileType: new FormControl('', Validators.required),
@@ -40,15 +72,25 @@ export class FileUploadComponent implements OnInit {
   }
 
   onFileChange(event) {
-    this.form.controls['fileType'].setValue(event.target.files[0].type);
-    this.files = new Array<FileDocument>();
-    let file = event.target.files;
-    let selectedFiles: Array<File> = <Array<File>>file;
-    for(let document of selectedFiles){
-      this.files.push(this.getFileDocument(document));
+    //this.form.controls['fileType'].setValue(event.target.files[0].type);
+    if (this.files) {
+      //console.log('old files', this.files);
+      let file = event.target.files || event.dataTransfer.files;
+      let selectedFiles: Array<File> = <Array<File>>file;
+      for (let document of selectedFiles) {
+        this.files.push(this.getFileDocument(document));
+      }
     }
-    this.isFileSelect = true;
-    console.log('files:', this.files);
+    else {
+      this.files = new Array<FileDocument>();
+      let file = event.target.files || event.dataTransfer.files;
+      let selectedFiles: Array<File> = <Array<File>>file;
+      for (let document of selectedFiles) {
+        this.files.push(this.getFileDocument(document));
+      }
+      this.isFileSelect = true;
+      console.log('files:', this.files);
+    }
   }
 
   getFileDocument(document: File): FileDocument {
@@ -70,19 +112,19 @@ export class FileUploadComponent implements OnInit {
 
   onSubmit(event) {
     let metaData = {
-        type: this.form.controls['documentType'].value,
-        metadataMap: this.form.controls['metaData'].value
+      type: this.form.controls['documentType'].value,
+      metadataMap: this.form.controls['metaData'].value
     };
-    
+
     let formData: FormData = new FormData();
     formData.append('fileType', this.form.controls['fileType'].value, null);
     formData.append('file', event.srcElement[0].files[0], 'fileName');
-    formData.append('metaData', JSON.stringify(metaData) );
+    formData.append('metaData', JSON.stringify(metaData));
 
     this.documentService.postDocument(this.caseId, formData)
-      .subscribe( (data:any) => {
-        this.status = new AppMessage(MessageType.success,'Document successfully uploaded',
-        "Document ID:" + data.documentId);
+      .subscribe((data: any) => {
+        this.status = new AppMessage(MessageType.success, 'Document successfully uploaded',
+          "Document ID:" + data.documentId);
       });
   }
 
@@ -116,5 +158,24 @@ export class FileUploadComponent implements OnInit {
     this.form.setControl('metaData', new FormGroup(group));
     this.metaDataFormGroup = <FormGroup>this.form.controls['metaData'];
   }
+
+	// file drag hover
+	FileDragHover(e) {
+		e.stopPropagation();
+		e.preventDefault();
+		e.target.className = (e.type == "dragover" ? "hover" : "");
+	}
+
+
+	// file selection
+	FileSelectHandler(e) {
+
+		// cancel event and hover styling
+		this.FileDragHover(e);
+
+		// fetch FileList object
+		var files = e.target.files || e.dataTransfer.files;
+
+	}
 
 }
