@@ -1,17 +1,37 @@
 <div class="container">
   <div class="col-xs-11">
 
-    <h1>File upload</h1>
-
+    <span class="text-center"><h2>File upload</h2></span>
+    <br>
     <app-notification [message]="status"></app-notification>
 
     <form [formGroup]="form" (ngSubmit)="onSubmit($event)">
 
       <div class="form-group">
-        <label for="">File:</label><br>
         <!--<input class="form-control" type="file" formControlName="file" (change)="onFileChange($event)">-->
-        <input type="file" name="files[]" id="file" class="form-control" data-multiple-caption="{count} files selected" multiple="" (change)="onFileChange($event)" >
+        <!--<input type="file" name="files[]" id="file" class="form-control" data-multiple-caption="{count} files selected" multiple="" (change)="onFileChange($event)" >-->
+ 
       </div>
+
+<label class="uploader" ondragover="return false;"
+    [class.loaded]="loaded" 
+    [style.outlineColor]="dragging ? activeColor : baseColor"
+    (dragenter)="handleDragEnter()"
+    (dragleave)="handleDragLeave()"
+    (drop)="handleDrop($event)">
+    
+    <i class="icon icon-upload" 
+        [style.color]="dragging 
+            ? ((imageSrc.length > 0) ? overlayColor : activeColor)
+            : ((imageSrc.length > 0) ? overlayColor : baseColor)"></i>
+    
+    <img 
+        [src]="imageSrc" 
+        (load)="handleImageLoad()" 
+        [class.loaded]="imageLoaded"/>
+    <input type="file" name="files[]" id="file" class="form-control" data-multiple-caption="{count} files selected" multiple="" (change)="onFileChange($event)" >
+
+</label>      
       <div *ngIf="isFileSelect">
         <h4 class="row-title"> Files to upload </h4>
         <app-list [dataset]='files' [showView]='false'></app-list>
