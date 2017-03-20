@@ -13,25 +13,23 @@
  
       </div>
 
-<label class="uploader" ondragover="return false;"
-    [class.loaded]="loaded" 
-    [style.outlineColor]="dragging ? activeColor : baseColor"
-    (dragenter)="handleDragEnter()"
-    (dragleave)="handleDragLeave()"
-    (drop)="handleDrop($event)">
-    
-    <i class="icon icon-upload" 
-        [style.color]="dragging 
-            ? ((imageSrc.length > 0) ? overlayColor : activeColor)
-            : ((imageSrc.length > 0) ? overlayColor : baseColor)"></i>
-    
-    <img 
-        [src]="imageSrc" 
-        (load)="handleImageLoad()" 
-        [class.loaded]="imageLoaded"/>
-    <input type="file" name="files[]" id="file" class="form-control" data-multiple-caption="{count} files selected" multiple="" (change)="onFileChange($event)" >
+      <label class="uploader" ondragover="return false;"
+          [class.loaded]="loaded" 
+          [style.outlineColor]="dragging ? activeColor : baseColor"
+          (dragenter)="handleDragEnter()"
+          (dragleave)="handleDragLeave()"
+          (drop)="handleDrop($event)">
+          
+          <i class="icon icon-upload" 
+              [style.color]="dragging 
+                  ? ((imageSrc.length > 0) ? overlayColor : activeColor)
+                  : ((imageSrc.length > 0) ? overlayColor : baseColor)"></i>
+          
+                  
+          <input type="file" name="files[]" id="file" class="form-control" data-multiple-caption="{count} files selected" multiple="" (change)="onFileChange($event)" >
 
-</label>      
+      </label>     
+      <br> 
       <div *ngIf="isFileSelect">
         <h4 class="row-title"> Files to upload </h4>
         <app-list [dataset]='files' [showView]='false'></app-list>

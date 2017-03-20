@@ -27,7 +27,7 @@ export class FileUploadComponent implements OnInit {
 
 /******* */
  
-    activeColor: string = 'green';
+    activeColor: string = '#0080ff';
     baseColor: string = '#ccc';
     overlayColor: string = 'rgba(255,255,255,0.5)';
     
