@@ -72,7 +72,15 @@ export class FileUploadComponent implements OnInit {
   }
 
   onFileChange(event) {
-    //this.form.controls['fileType'].setValue(event.target.files[0].type);
+
+    if(event.target){
+      if(event.dataTransfer){
+          this.form.controls['fileType'].setValue(event.dataTransfer.files[0].type);      
+      }
+      else{
+          this.form.controls['fileType'].setValue(event.target.files[0].type);
+      }
+    }
     if (this.files) {
       //console.log('old files', this.files);
       let file = event.target.files || event.dataTransfer.files;
