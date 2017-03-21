@@ -18,7 +18,7 @@
     <span> Items: {{pagedItems}} </span> 
     -->
     <app-pagination [dataset]="searchResult" (setPageClick)='setPage($event)'></app-pagination>
-    <app-list [dataset]='pagedItems' [showView]='false'></app-list>
+    <app-list [dataset]='pagedItems' [showView]='true' (OnViewClick)='setRow($event)'></app-list>
 
   </div>
 </div>

@@ -21,12 +21,8 @@ export class ResultsComponent implements OnInit {
   searchResult: any;
   resultRows: Array<any> = [];
   resultsCols: Array<any> = [];
-
-
   // paged items
   pagedItems: any[] = [];
-
-
 
   constructor(private searchService: SearchService,
               private resultService: ResultsService,
@@ -64,16 +60,16 @@ export class ResultsComponent implements OnInit {
 
         }
       });
-
   }
- setPage(event): void {
-    
-    //console.log("Emitted in Result com:",event);
-    //console.log("pagedItems:" ,this.pagedItems);
+ setPage(event): void {    
+    console.log("Emitted in Result component:",event);
+    console.log("pagedItems:" ,this.pagedItems);
     this.pagedItems = event;
     //console.log(this.pagedItems);
   }  
-  
+  setRow(event):void{
+    console.log('Row Emitted in Result component:',event);
+  }
   private updateMetaDataFields(fieldList) {
     let group: any = {};
 

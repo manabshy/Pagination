@@ -47,8 +47,8 @@ export class PaginationComponent implements OnChanges {
       console.log(this.pager);
       // get current page of items
       this.pagedItems = this.dataset.slice(this.pager.startIndex, this.pager.endIndex + 1);
-      console.log("in Pagination Com: Before Emit:",  this.pagedItems);
-          this.setPageClick.emit(this.pagedItems);
+      console.log("in Pagination Component: Before Emit:",  this.pagedItems);
+      this.setPageClick.emit(this.pagedItems);
     }
   }
 }
