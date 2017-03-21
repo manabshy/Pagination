@@ -186,4 +186,8 @@ export class FileUploadComponent implements OnInit {
 
 	}
 
+  setRow(event):void{
+    console.log('File Data/MetaData:', event);
+  }
+
 }
