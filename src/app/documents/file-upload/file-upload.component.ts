@@ -167,24 +167,24 @@ export class FileUploadComponent implements OnInit {
     this.metaDataFormGroup = <FormGroup>this.form.controls['metaData'];
   }
 
-	// file drag hover
-	FileDragHover(e) {
-		e.stopPropagation();
-		e.preventDefault();
-		e.target.className = (e.type == "dragover" ? "hover" : "");
-	}
+	// // file drag hover
+	// FileDragHover(e) {
+	// 	e.stopPropagation();
+	// 	e.preventDefault();
+	// 	e.target.className = (e.type == "dragover" ? "hover" : "");
+	// }
 
 
-	// file selection
-	FileSelectHandler(e) {
+	// // file selection
+	// FileSelectHandler(e) {
 
-		// cancel event and hover styling
-		this.FileDragHover(e);
+	// 	// cancel event and hover styling
+	// 	this.FileDragHover(e);
 
-		// fetch FileList object
-		var files = e.target.files || e.dataTransfer.files;
+	// 	// fetch FileList object
+	// 	var files = e.target.files || e.dataTransfer.files;
 
-	}
+	// }
 
   setRow(event):void{
     console.log('File Data/MetaData:', event);
