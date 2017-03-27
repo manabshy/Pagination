@@ -1,9 +1,11 @@
 /* tslint:disable:no-unused-variable */
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { DebugElement } from '@angular/core';
+import { DebugElement,Component } from '@angular/core';
 
 import { SearchComponent } from './search.component';
+@Component({selector: 'router-outlet',template:''})
+class RouterComponentStub {};
 
 describe('SearchComponent', () => {
   let component: SearchComponent;
@@ -11,7 +13,7 @@ describe('SearchComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SearchComponent ]
+      declarations: [ SearchComponent,RouterComponentStub]
     })
     .compileComponents();
   }));
