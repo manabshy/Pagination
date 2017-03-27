@@ -4,14 +4,15 @@ import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
 import { PaginationComponent } from './pagination.component';
-
+import { PagerService } from '../../search/index'
 describe('PaginationComponent', () => {
   let component: PaginationComponent;
   let fixture: ComponentFixture<PaginationComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PaginationComponent ]
+      declarations: [ PaginationComponent ],
+      providers:[{provide:PagerService}]
     })
     .compileComponents();
   }));

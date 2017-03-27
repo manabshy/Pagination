@@ -16,6 +16,8 @@ import { Observable} from 'rxjs';
 import { FieldsComponent } from '../../shared/fields/fields.component';
 import { ResultsService } from './results.service';
 import { NotificationComponent } from '../../shared/notification/notification.component';
+import { PaginationComponent } from '../../shared/pagination/pagination.component';
+import { PagerService } from '../../search/index';
 
 class MockRouter {
   snapshot = {
@@ -54,13 +56,15 @@ describe('ResultsComponent', () => {
         HeaderComponent,
         ListComponent,
         FieldsComponent,
-        NotificationComponent
+        NotificationComponent,
+        PaginationComponent
         ],
       providers: [
         {provide: Router,useClass: MockRouter},
         {provide: ActivatedRoute,useClass: MockRouter},
         {provide:SearchService, useClass: MockSearchService},
-        {provide:ResultsService, useClass:MockResultService}
+        {provide:ResultsService, useClass:MockResultService},
+        {provide:PagerService }
       ],
       imports:[ReactiveFormsModule,RouterModule]
     })
