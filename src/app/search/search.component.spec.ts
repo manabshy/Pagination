@@ -4,9 +4,9 @@ import { By } from '@angular/platform-browser';
 import { DebugElement,Component } from '@angular/core';
 
 import { SearchComponent } from './search.component';
-
 @Component({selector: 'router-outlet',template:''})
 class RouterComponentStub {};
+
 
 describe('SearchComponent', () => {
   let component: SearchComponent;
