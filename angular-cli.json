@@ -21,10 +21,10 @@
         "assets/scss/main.scss"
       ],
       "scripts": [],
-      "environmentSource": "environments/environment.ts",
       "environments": {
-      "dev": "environments/environment.ts",
-      "prod": "environments/environment.prod.ts"
+        "source": "environments/environment.ts",
+        "dev": "environments/environment.ts",
+        "prod": "environments/environment.prod.ts"
       }
     }
   ],

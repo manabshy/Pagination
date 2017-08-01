@@ -4,12 +4,12 @@
 module.exports = function (config) {
   config.set({
     basePath: '',
-    frameworks: ['jasmine', '@angular/cli'],
+    frameworks: ['jasmine', 'angular-cli'],
     plugins: [
       require('karma-jasmine'),
       require('karma-chrome-launcher'),
       require('karma-coverage'),
-      require('@angular/cli/plugins/karma')
+      require('angular-cli/plugins/karma')
     ],
     // Array - contains all the files needed to start the app with Karma
     files: [
@@ -25,7 +25,7 @@ module.exports = function (config) {
     //Source files that you need to generate the coverage report 
     //regular expression to get to which files we should create the coverage report. Basically all the TypeScript files that doesn’t have a spec inside.
     preprocessors: {
-      './src/test.ts': ['@angular/cli'],
+      './src/test.ts': ['angular-cli'],
        'src/app/**/!(*.spec).js': ['coverage'] 
     },
     reporters: ['progress',  'coverage'],
