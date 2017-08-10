@@ -22,7 +22,7 @@ import { SavedSearchesComponent } from '../search/saved-searches/saved-searches.
 import { CardViewComponent } from './shared/card-view/card-view.component';
 import { RecentlyModifiedComponent } from './recently-modified/recently-modified.component';
 
-
+import { NavigationModule } from '../shared/navigation/navigation.module';
 
 @NgModule({
   imports: [
@@ -31,8 +31,8 @@ import { RecentlyModifiedComponent } from './recently-modified/recently-modified
     ListModule,
     FormsModule,
     ReactiveFormsModule,
-    SearchRoutingModule
-
+    SearchRoutingModule,
+    NavigationModule
   ],
   declarations: [
     SearchComponent,
