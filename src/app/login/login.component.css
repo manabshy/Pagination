@@ -1,0 +1,32 @@
+
+body{
+    float: right;
+    position: relative;
+    left: 150px;
+}
+.login-card {
+    margin: 4rem 0;
+    border-top: 4px #57d995 solid;
+}
+
+.login-card .card-block {
+    padding: 2rem 1.25rem;
+}
+
+.btn-primary {
+    border-color: #127674;
+}
+
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active {
+    background-color: #0f605e;
+    border-color: #0f605e;
+}
+
+.form-control {
+    background-color: #e6e6e6;
+    border-color: #e6e6e6;
+}
+
+.form-control:focus {
+    border-color: #127674;
+}

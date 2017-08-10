@@ -1,0 +1,8 @@
+[
+  {"email": "ali@qa.com" , "password": "a", "firstName": "M", "lastName": "Ali"},
+  {"email": "mj@qa.com" , "password": "m", "firstName": "MJ", "lastName": "B"},
+  {"email": "prabu@qa.com" , "password": "p", "firstName": "Prabu", "lastName": "Manickam"},
+  {"email": "ty@qa.com" , "password": "t", "firstName": "Terry", "lastName": "B"},
+  {"email": "joe@qa.com" , "password": "bloggspwd", "firstName": "Terry", "lastName": "B"},
+  {"email": "hugo@qa.com" , "password": "password123", "firstName": "Hugo", "lastName": "Rente"}
+]

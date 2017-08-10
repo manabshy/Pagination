@@ -5,7 +5,13 @@
 /tmp
 
 # dependencies
-/node_modules
+node_modules/
+reports/
+coverage/
+
+# Build folder
+build/
+dist/
 
 # IDEs and editors
 /.idea
@@ -14,6 +20,30 @@
 .c9/
 *.launch
 .settings/
+
+# IDE's
+.idea/
+nbproject
+.project
+.redcar
+*.sublime-*
+*.iml
+jsconfig.js
+
+# Sonar
+.sonar/
+.sonar_lock
+
+# Other
+.tmp
+.DS_Store
+.npm_install_log
+npm-debug.log
+references/
+.eslintrc
+
+# screen grabs from tests
+/*.png
 
 # IDE - VSCode
 .vscode/*

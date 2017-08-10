@@ -12,13 +12,20 @@ import { PredefinedSearchesComponent } from '../../search/predefined-searches/pr
 import { SavedSearchesComponent } from '../../search/saved-searches/saved-searches.component';
 import { RecentlyModifiedComponent } from '../../search/recently-modified/recently-modified.component';
 import { NavigationComponent } from '../../shared/navigation/navigation.component';
+import { LoginComponent} from '../../login/login.component';
+import { AuthGuardService} from '../../guards/auth-guard.service';
+
+
 
 const APP_ROUTES: Routes = [
-    { path: '', component: HomeComponent },
+      {path: '', component: HomeComponent, canActivate: [AuthGuardService]},
+      {path: 'login', component: LoginComponent},
+
+      { path: '', component: HomeComponent },
       { path: 'case/:id', component: HomeComponent },
       { path: 'case/:id/upload', component: FileUploadComponent },
       { path: 'search', loadChildren: 'app/search/search.module#SearchModule'},
-      
+
       // { path: 'search/results', component: ResultsComponent, resolve: { criteria: SearchResolve } },
       // { path: 'searches/predefined', component: PredefinedSearchesComponent},
       // { path: 'searches/savedsearches', component: SavedSearchesComponent},

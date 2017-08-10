@@ -14,12 +14,14 @@ import { SharedModule } from './shared/shared.module';
 import { DocumentsModule } from './documents/documents.module';
 import { ListModule } from './shared/list/list.module';
 import { SearchModule } from './search/search.module';
+import { LoginModule } from './login/login.module';
 import { HttpClientService } from './shared/http-client.service';
 import { NavigationModule } from './shared/navigation/navigation.module';
 
 import { PagerService } from './search/index';
+import { AuthGuardService } from './guards/auth-guard.service';
 
-const IS_DEV = true; 
+const IS_DEV = true;
 
 export function loadConfig(config: AppConfig) {
   return () => config.load();
@@ -37,15 +39,17 @@ export function loadConfig(config: AppConfig) {
     HttpModule,
     DynamicFormModule,
     RoutingComponent,
-    SharedModule,  
+    SharedModule,
     DocumentsModule,
     //SearchModule,  Don't Load this module,This will be a lazy loaded module
     ListModule,
-    NavigationModule
+    NavigationModule,
+    LoginModule
   ],
   providers: [
     AppConfig,
     PagerService,
+    AuthGuardService,
     HttpClientService,
     {
       provide: APP_INITIALIZER,
