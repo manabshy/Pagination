@@ -6,7 +6,7 @@
   background-color: darken($body-bg, 3%);
 }
 
-@include bg-variant('.bg-primary', $brand-primary);
+@include bg-variant('.bg-primary', $gray-light);
 
 @include bg-variant('.bg-success', $brand-success);
 
